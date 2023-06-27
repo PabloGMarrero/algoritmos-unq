@@ -53,6 +53,7 @@ class RandomGreedy(Strategy):
         current_vertex = start_vertex
         self.visited[current_vertex] = True
         self.circuit[0] = current_vertex
+        better_distance = 0
 
         for i in range(0, self.matrix_length, 1):
             near_vertex = -1
@@ -63,7 +64,11 @@ class RandomGreedy(Strategy):
             for j in random_vertex:
                 if(not self.visited[j] and self.matrix[current_vertex][j] < min_distance):
                     near_vertex = j
+                    if not min_distance == sys.maxsize:
+                        better_distance = better_distance - min_distance
                     min_distance = self.matrix[current_vertex][j]
+                    if not min_distance == sys.maxsize:
+                        better_distance = better_distance + min_distance
         
             if near_vertex == -1:
                 near_vertex = start_vertex
@@ -72,7 +77,9 @@ class RandomGreedy(Strategy):
             self.visited[current_vertex] = True
             self.circuit[i] = current_vertex
 
-        return self.circuit
+            
+
+        return self.circuit, better_distance
     
     def get_random_vertex(self, visited, matrix):
         vertex = range(0, len(matrix))
