@@ -64,7 +64,7 @@ class AdaptiveSearch():
         return best_solution, best_cost
        
 
-    def search(self, greedy_solution, better_distance, matrix, result_iterations, limit):
+    def search(self, greedy_solution, better_distance, matrix, limit):
         best_solution = greedy_solution
         best_cost = better_distance
         isBest = True
@@ -80,8 +80,6 @@ class AdaptiveSearch():
                 best_cost = neighbor_cost
             else:
                 isBest = False
-            
-            result_iterations.append(best_cost)
 
         return (best_solution, best_cost)
 

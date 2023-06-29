@@ -1,14 +1,15 @@
 from random import randint
 
 class Graph:
-    def __init__(self, size):
+    def __init__(self, size, edge_cost):
         self.size = size
+        self.edge_cost = edge_cost
     
     def generate_matrix(self):
         outside_size = self.size # How many nested lists to include
         inside_size = self.size  # How many numbers will be in an inside list
         outside_list = [] # The final list
-        max_number = 10
+        max_number = self.edge_cost
 
         for i in range(0, outside_size, 1):
             _list = [] # Create new "inside" (nested) list
