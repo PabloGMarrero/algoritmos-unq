@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 
 class Graphic():
     def __init__(self, nodes) -> None:
@@ -19,19 +20,27 @@ class Graphic():
 
         #plt.xlim(0, max(searches) + 1)
         #plt.ylim(0, max(searches) + 300)
+        min_value = sys.maxsize
         xpoints = np.array(range(0, len(searches)))
         gr_searches = []
         for search in searches:
-            gr_searches.append(search[1])
+            val = search[1]
+            if val < min_value:
+                min_value = val
+            gr_searches.append(min_value)
 
         ypoints = np.array(gr_searches)
-
         plt.plot(xpoints, ypoints, label = "With AS")
+
 
         x2 = np.array(range(0, len(searches)))
         as_searches = []
+        min_value = sys.maxsize
         for search in searches:
-            as_searches.append(search[0])
+            val = search[0]
+            if val < min_value:
+                min_value = val
+            as_searches.append(min_value)
 
         y2 = np.array(as_searches)
 

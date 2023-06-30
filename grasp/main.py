@@ -5,7 +5,7 @@ from adaptive_search import AdaptiveSearch
 from procedure import Procedure
 from graphic import Graphic
 
-g = Graph(1000, edge_cost=500)
+g = Graph(100, edge_cost=500)
 matrix = g.generate_matrix()
 #print(matrix)
 
@@ -29,8 +29,8 @@ solution=None
 searches = []
 procedure_1 = Procedure(random_greedy, adaptive_search, max_search_procedure, limit_adaptive_search, matrix, searches)
 grasp_result = procedure_1.do_grasp()
-print(grasp_result)
-print (searches)
+#print(grasp_result)
+#print (searches)
 
 graphic = Graphic(len(matrix))
 graphic.do_graphic(searches)
