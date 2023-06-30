@@ -38,10 +38,11 @@ class AdaptiveSearch():
         i = 0
         isBetter = False
         size_solution = len(solution)
-        best_cost = 0
+        best_cost = cost
         best_solution = solution
 
-        while not isBetter and i < size_solution:
+        #while not isBetter and i < size_solution:
+        while i < size_solution:    
             list_swap = []
             list_swap.extend(solution[0:i+1])
             if ( i+3 == size_solution):
@@ -52,12 +53,13 @@ class AdaptiveSearch():
                 list_swap.append(solution[i+1]) #swapeo posicion siguiente y lo pongo después
                 list_swap.extend(solution[i+3:size_solution]) ## meto el resto
 
-            best_cost = self.get_costo_circuito(matrix, list_swap)
+            swap_cost = self.get_costo_circuito(matrix, list_swap)
 
             ## explorar toda la solución 
-            if best_cost < cost:
+            if swap_cost < best_cost:
                 best_solution = list_swap
-                isBetter = True
+                best_cost = swap_cost
+                #isBetter = True
         
             i= i+1
         """for i in range(0, size_solution):

@@ -5,7 +5,7 @@ from adaptive_search import AdaptiveSearch
 from procedure import Procedure
 from graphic import Graphic
 
-g = Graph(100, edge_cost=500)
+g = Graph(10, edge_cost=500)
 matrix = g.generate_matrix()
 #print(matrix)
 

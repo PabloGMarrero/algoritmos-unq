@@ -31,8 +31,8 @@ class Procedure():
             greedy_circuit, greedy_circuit_cost = self.random_greedy.get_circuit()
             as_best_solution, as_best_cost = self.adaptive_search.search(greedy_circuit, greedy_circuit_cost, self.matrix, self.limit_adaptive_search)
         
-            #print("GR best, GR cost", greedy_circuit, greedy_circuit_cost)
-            #print("AS best, as cost", as_best_solution, as_best_cost)
+            print("GR best, GR cost", greedy_circuit, greedy_circuit_cost)
+            print("AS best, as cost", as_best_solution, as_best_cost)
 
             if greedy_circuit_cost < as_best_cost :
                 as_best_cost = greedy_circuit_cost
@@ -46,7 +46,6 @@ class Procedure():
                 better_cost = as_best_cost
                 
             
-            #self.searches.append((greedy_circuit_cost, as_best_cost))
             self.searches.append((greedy_circuit_cost, as_best_cost))
         
         return better_solution, better_cost
