@@ -10,16 +10,10 @@ class Graphic():
     def do_graphic(self, searches, save=False):
 
         plt.figure(1)
-        plt.title(f"Resultados para {self.nodes} nodos")
+        plt.title(f"Resultados GRASP para {self.nodes} nodos")
         plt.xlabel("# iteraciones")
-        plt.ylabel("puntaje")
+        plt.ylabel("scoring")
 
-        #for i in range(0, len(searches)):
-            #puntajes = [sol for sol in search]
-        #    plt.plot(i, searches[i])
-
-        #plt.xlim(0, max(searches) + 1)
-        #plt.ylim(0, max(searches) + 300)
         min_value = sys.maxsize
         xpoints = np.array(range(0, len(searches)))
         gr_searches = []
