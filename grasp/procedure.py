@@ -24,7 +24,7 @@ class Procedure():
         self.searches.append((better_cost, as_best_cost))
         limit = self.limit_adaptive_search
         #print("-----------WHILE------------")
-        while(self.max_search_procedure > amount_times and  limit > 1):
+        while(self.max_search_procedure > amount_times and limit > 1):
             amount_times = amount_times + 1
 
             self.random_greedy.reset()
@@ -46,6 +46,7 @@ class Procedure():
                 better_cost = as_best_cost
                 
             
+            #self.searches.append((greedy_circuit_cost, as_best_cost))
             self.searches.append((greedy_circuit_cost, as_best_cost))
         
         return better_solution, better_cost
