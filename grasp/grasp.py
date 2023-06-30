@@ -1,4 +1,4 @@
-class Procedure():
+class Grasp():
     def __init__(self, random_greedy, adaptive_search, max_search_procedure,limit_adaptive_search, matrix, searches ) -> None:
         self.random_greedy = random_greedy
         self.adaptive_search =adaptive_search
