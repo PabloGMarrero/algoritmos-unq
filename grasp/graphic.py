@@ -7,7 +7,7 @@ class Graphic():
     def __init__(self, nodes) -> None:
         self.nodes = nodes
         
-    def do_grasp_graphic(self, searches, save=False):
+    def do_grasp_graphic(self, searches, save=False, path_to_save=None):
 
         plt.figure(1)
         plt.title(f"Resultados GRASP para {self.nodes} nodos")
@@ -42,12 +42,13 @@ class Graphic():
         plt.plot(x2, y2, label = "Without AS")
 
         plt.legend()
-        plt.show()
+        if not save:
+            plt.show()
 
         if save:
-            plt.savefig("path_bl")
+            plt.savefig(path_to_save)
     
-    def do_bl_graphic(self, searches, save=False):
+    def do_bl_graphic(self, searches, save=False, path_to_save=None):
 
         plt.figure(2)
         plt.title(f"Resultados BL para {self.nodes} nodos")
@@ -90,7 +91,8 @@ class Graphic():
         plt.legend()
 
         
-        plt.show()
+        if not save:
+            plt.show()
 
         if save:
-            plt.savefig("path_bl")
+            plt.savefig(path_to_save)
