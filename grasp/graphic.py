@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import datetime
 
 class Graphic():
     def __init__(self, nodes) -> None:
@@ -46,7 +47,8 @@ class Graphic():
             plt.show()
 
         if save:
-            plt.savefig(path_to_save)
+            date = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+            plt.savefig(path_to_save+"-"+date+".png")
     
     def do_bl_graphic(self, searches, save=False, path_to_save=None):
 
@@ -95,4 +97,5 @@ class Graphic():
             plt.show()
 
         if save:
-            plt.savefig(path_to_save)
+            date = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
+            plt.savefig(path_to_save+"-"+date+".png")

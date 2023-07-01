@@ -8,7 +8,8 @@ class Strategy():
         self.matrix = matrix
         self.matrix_length = len(matrix)
         self.visited = [False] * self.matrix_length
-        self.circuit = [None] * self.matrix_length
+        #self.circuit = [None] * self.matrix_length
+        self.circuit = []
 
     def get_circuit(self, matrix) -> List[int]:
         pass
@@ -49,17 +50,19 @@ class RandomGreedy(Strategy):
 
     def reset(self):
         self.visited = [False] * self.matrix_length
-        self.circuit = [None] * self.matrix_length
+        #self.circuit = [None] * self.matrix_length
+        self.circuit = []
 
     def get_circuit(self) -> List[int]:
 
         start_vertex = random.randint(0, self.matrix_length-1)
+        index = 0
         current_vertex = start_vertex
         self.visited[current_vertex] = True
-        self.circuit[0] = current_vertex
+        self.circuit.append(current_vertex)
         better_distance = 0
 
-        for i in range(1, self.matrix_length):
+        """for i in range(1, self.matrix_length):
             near_vertex = -1
             min_distance = sys.maxsize
 
@@ -81,8 +84,30 @@ class RandomGreedy(Strategy):
                 current_vertex = near_vertex
                 self.visited[current_vertex] = True
                 self.circuit[i] = current_vertex
-    
+        """
+        
+        while len(self.circuit) < self.matrix_length:
+            near_vertex = -1
+            min_distance = sys.maxsize
 
+            random_vertexes = self.get_better_vertexes(self.visited, self.matrix, current_vertex)
+
+            random_destiny_vertex = random.choice(random_vertexes)
+            near_vertex = random_destiny_vertex[0]
+            
+            #if not min_distance == sys.maxsize:
+            #    better_distance = better_distance - min_distance
+            min_distance = random_destiny_vertex[1]
+            if not min_distance == sys.maxsize:
+                better_distance = better_distance + min_distance
+
+            current_vertex = near_vertex
+            self.visited[current_vertex] = True
+            #self.circuit[i] = current_vertex
+            self.circuit.append(current_vertex)
+            index = index + 1
+
+        self.circuit.append(start_vertex)
         return self.circuit, better_distance
     
     def get_better_vertexes(self, visited, matrix, current):
@@ -93,10 +118,16 @@ class RandomGreedy(Strategy):
             if not visited[i] and neighbors[i] !=0:
                 non_visited_elements.append((i, neighbors[i]))
 
+        if len(non_visited_elements) == 0:
+            print("ojota...")
         non_visited_elements.sort(key=lambda tup:(tup[1], tup[0]))
-        slice_value = 5
+        slice_value = int(len(non_visited_elements)*0.15)
+        #slice_value = 5
 
         if len(non_visited_elements) < slice_value:
+            return non_visited_elements
+        
+        if slice_value == 0:
             return non_visited_elements
 
         return non_visited_elements[0:slice_value]

@@ -1,11 +1,22 @@
 from random import randint
+import os
 
 class Graph:
     def __init__(self, size):
         self.size = size
         self.edge_cost = None
 
-    def create_with(self, size, edge_cost):
+    def generate(self):
+        graph_path = f"resources/graphs/test_graph_{self.size}.txt"
+
+        if not os.path.exists(graph_path):
+            self.write_graph(f"resources/graphs/test_graph_{self.size}.txt", self.size)
+
+        num_rows, matrix, tasks = self.read_graph(graph_path)
+
+        return num_rows, matrix, tasks
+
+    def init_with(self, size, edge_cost):
         self.size = size
         self.edge_cost = edge_cost
     
@@ -13,7 +24,8 @@ class Graph:
         matrix = [[str(0) for x in range(nodes)] for y in range(nodes)]
         for i in range(0, nodes):
             for j in range (i+1, nodes):
-                value = str(randint(1, 1000)) 
+                max_value = 1000 if self.edge_cost is None else self.edge_cost 
+                value = str(randint(1, max_value)) 
                 matrix[i][j] = value
                 matrix[j][i] = value
 
@@ -43,7 +55,7 @@ class Graph:
         #print(tasks)
         return num_rows, matrix, tasks
 
-    def generate_matrix(self):
+    def generate_random_matrix(self):
         
         outside_size = self.size # How many nested lists to include
         inside_size = self.size  # How many numbers will be in an inside list
