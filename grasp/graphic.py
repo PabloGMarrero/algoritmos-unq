@@ -7,7 +7,7 @@ class Graphic():
     def __init__(self, nodes) -> None:
         self.nodes = nodes
         
-    def do_graphic(self, searches, save=False):
+    def do_grasp_graphic(self, searches, save=False):
 
         plt.figure(1)
         plt.title(f"Resultados GRASP para {self.nodes} nodos")
@@ -47,3 +47,50 @@ class Graphic():
         if save:
             plt.savefig("path_bl")
     
+    def do_bl_graphic(self, searches, save=False):
+
+        plt.figure(2)
+        plt.title(f"Resultados BL para {self.nodes} nodos")
+        plt.xlabel("# iteraciones")
+        plt.ylabel("test")
+
+        """min_value = sys.maxsize
+        bl_searches = []
+        iterations = 0
+        for search in searches:
+            local_bl_searches = []
+            for i in range(0, len(search)):
+                val = search[i]
+                if val < min_value:
+                    min_value = val
+                local_bl_searches.append(min_value)
+                iterations = iterations + 1
+            bl_searches.append(local_bl_searches)
+
+        xpoints = np.array(range(0, iterations))
+        ypoints = np.array(bl_searches)
+
+        plt.plot(xpoints, ypoints, label = "With AS")
+        plt.legend()"""
+
+        #legend = []
+        for search in searches:
+            scoring = []
+            min_value = sys.maxsize
+            for i in range(0, len(search)):
+                val = search[i]
+                if val < min_value:
+                    min_value = val
+                scoring.append(min_value)
+            #legend.append("BL"+str(len(search)))
+            plt.plot(list(range(0, len(search))), scoring)
+
+        plt.xlim(0, max([len(res) for res in searches]) + 1)
+        plt.ylim(0, max([sol for res in searches for sol in res]) + 300)
+        plt.legend()
+
+        
+        plt.show()
+
+        if save:
+            plt.savefig("path_bl")

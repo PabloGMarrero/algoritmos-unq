@@ -7,14 +7,14 @@ class Grasp():
         self.matrix = matrix
         self.searches = searches
 
-    def do_grasp(self):
+    def do_grasp(self, local_searches):
         amount_times = 0
         #better_solution = []
         #better_cost = 0
 
         better_solution, better_cost = self.random_greedy.get_circuit()
         #print("GR best, GR cost", better_solution, better_cost)
-        as_best_solution, as_best_cost = self.adaptive_search.search(better_solution, better_cost, self.matrix, self.limit_adaptive_search)
+        as_best_solution, as_best_cost = self.adaptive_search.search(better_solution, better_cost, self.matrix, self.limit_adaptive_search, local_searches)
         #print("AS best, as cost", as_best_solution, as_best_cost)
         
         if as_best_cost < better_cost:
@@ -29,10 +29,10 @@ class Grasp():
 
             self.random_greedy.reset()
             greedy_circuit, greedy_circuit_cost = self.random_greedy.get_circuit()
-            as_best_solution, as_best_cost = self.adaptive_search.search(greedy_circuit, greedy_circuit_cost, self.matrix, self.limit_adaptive_search)
+            as_best_solution, as_best_cost = self.adaptive_search.search(greedy_circuit, greedy_circuit_cost, self.matrix, self.limit_adaptive_search, local_searches)
         
-            print("GR best, GR cost", greedy_circuit, greedy_circuit_cost)
-            print("AS best, as cost", as_best_solution, as_best_cost)
+            #print("GR best, GR cost", greedy_circuit, greedy_circuit_cost)
+            #print("AS best, as cost", as_best_solution, as_best_cost)
 
             if greedy_circuit_cost < as_best_cost :
                 as_best_cost = greedy_circuit_cost

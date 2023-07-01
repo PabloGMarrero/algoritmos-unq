@@ -8,7 +8,7 @@ class AdaptiveSearch():
         
         return costo
 
-    def neighbor_search_swapping(self, solution, cost, matrix):
+    def neighbor_search_swapping(self, solution, cost, matrix, neighbor_searches):
         i = 0
         #isBetter = False
         size_solution = len(solution)
@@ -35,19 +35,23 @@ class AdaptiveSearch():
                 best_cost = swap_cost
                 #isBetter = True
         
-            i= i+1        
+            neighbor_searches.append(swap_cost)
+
+            i= i+1
 
         return best_solution, best_cost
        
 
-    def search(self, greedy_solution, better_distance, matrix, limit):
+    def search(self, greedy_solution, better_distance, matrix, limit, local_searches):
         best_solution = greedy_solution
         best_cost = better_distance
         isBest = True
 
+        neighbor_searches = []
+
         while isBest and limit > 0:
             # ver de pasarle limite par que corte y no explore todos si la mejora es baja
-            neighbor_cycle, neighbor_cost = self.neighbor_search_swapping(best_solution, best_cost, matrix)
+            neighbor_cycle, neighbor_cost = self.neighbor_search_swapping(best_solution, best_cost, matrix, neighbor_searches)
             
             if neighbor_cost < best_cost:
                 better_choice = (best_cost-neighbor_cost)/best_cost*100
@@ -57,6 +61,8 @@ class AdaptiveSearch():
                 best_cost = neighbor_cost
             else:
                 isBest = False
+
+            local_searches.append(neighbor_searches)
 
         return (best_solution, best_cost)
 
