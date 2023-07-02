@@ -41,7 +41,7 @@ graphic.do_bl_graphic(local_searches, save=True, path_to_save=f'output/graphics/
 """
 
 if __name__ == "__main__":
-    nodes = int(sys.argv[1]) if len(sys.argv)>1 else 16
+    nodes = int(sys.argv[1]) if len(sys.argv)>1 else 58
 
     g = Graph(nodes)
     num_rows, matrix, tasks = g.generate()
@@ -49,15 +49,16 @@ if __name__ == "__main__":
     random_greedy = RandomGreedy(matrix)
     adaptive_search = AdaptiveSearch()
 
-    limit_adaptive_search = float(sys.argv[2])
-    max_search_procedure = int(sys.argv[3])
+    limit_adaptive_search = float(sys.argv[2]) if len(sys.argv)>1 else 1.0
+    max_search_procedure = int(sys.argv[3]) if len(sys.argv)>1 else 100
     solution=None
     searches = []
     local_searches = []
     grasp_1 = Grasp(random_greedy, adaptive_search, max_search_procedure, limit_adaptive_search, matrix, searches)
     grasp_result = grasp_1.do_grasp(local_searches)
 
+    start_vertex = grasp_result[0][0]
     graphic = Graphic(len(matrix))
-    graphic.do_grasp_graphic(searches, save=True, path_to_save=f'output/graphics/grasp_rows_{num_rows}_as_{limit_adaptive_search}_max-iterations{max_search_procedure}')
+    graphic.do_grasp_graphic(searches, start_vertex, save=True, path_to_save=f'output/graphics/grasp_start_{start_vertex}_rows_{num_rows}_as_{limit_adaptive_search}_max-iterations{max_search_procedure}')
     graphic.do_bl_graphic(local_searches, save=True, path_to_save=f'output/graphics/bl_{num_rows}_as_{limit_adaptive_search}_max-iterations{max_search_procedure}')
     

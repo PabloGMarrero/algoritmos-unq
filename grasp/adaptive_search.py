@@ -1,5 +1,6 @@
 class AdaptiveSearch():
     
+    ## O(n)
     def get_costo_circuito(self, matrix, solution):
         costo = 0
 
@@ -8,6 +9,7 @@ class AdaptiveSearch():
         
         return costo
 
+    ## O(n^2)
     def neighbor_search_swapping(self, solution, cost, matrix, neighbor_searches):
         i = 0
         #isBetter = False
@@ -46,7 +48,7 @@ class AdaptiveSearch():
         best_solution = greedy_solution
         best_cost = better_distance
         isBest = True
-
+        iterations = 0
         neighbor_searches = []
 
         while isBest and limit > 0:
@@ -55,12 +57,18 @@ class AdaptiveSearch():
             
             if neighbor_cost < best_cost:
                 better_choice = (best_cost-neighbor_cost)/best_cost*100
-                if limit > abs(better_choice):
-                    limit = -1
+                #if not abs(better_choice) < limit:
+                mejora_minima_apreciable = best_cost * 0.01
+                if better_choice < mejora_minima_apreciable:
+                    isBest = False
+                
                 best_solution = neighbor_cycle
                 best_cost = neighbor_cost
-            else:
-                isBest = False
+            
+            if neighbor_cost == best_cost:
+                iterations = iterations + 1
+                if iterations > 10:
+                    isBest = False
 
             local_searches.append(neighbor_searches)
 

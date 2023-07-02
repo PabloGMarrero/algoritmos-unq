@@ -8,10 +8,10 @@ class Graphic():
     def __init__(self, nodes) -> None:
         self.nodes = nodes
         
-    def do_grasp_graphic(self, searches, save=False, path_to_save=None):
+    def do_grasp_graphic(self, searches, start_vertex, save=False, path_to_save=None):
 
         plt.figure(1)
-        plt.title(f"Resultados GRASP para {self.nodes} nodos")
+        plt.title(f"Resultados GRASP para {self.nodes} nodos comenzando por {start_vertex}")
         plt.xlabel("# iteraciones")
         plt.ylabel("scoring")
 

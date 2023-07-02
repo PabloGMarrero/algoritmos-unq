@@ -20,7 +20,7 @@ class Grasp():
         self.searches.append((better_cost, as_best_cost))
         limit = self.limit_adaptive_search
 
-        while(self.max_search_procedure > amount_times and limit > 1):
+        while(self.max_search_procedure > amount_times):
             amount_times = amount_times + 1
 
             self.random_greedy.reset()

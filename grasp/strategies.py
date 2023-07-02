@@ -118,8 +118,6 @@ class RandomGreedy(Strategy):
             if not visited[i] and neighbors[i] !=0:
                 non_visited_elements.append((i, neighbors[i]))
 
-        if len(non_visited_elements) == 0:
-            print("ojota...")
         non_visited_elements.sort(key=lambda tup:(tup[1], tup[0]))
         slice_value = int(len(non_visited_elements)*0.15)
         #slice_value = 5
