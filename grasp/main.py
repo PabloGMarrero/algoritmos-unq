@@ -49,7 +49,7 @@ if __name__ == "__main__":
     random_greedy = RandomGreedy(matrix)
     adaptive_search = AdaptiveSearch()
 
-    limit_adaptive_search = float(sys.argv[2]) if len(sys.argv)>1 else nodes * 1.2
+    limit_adaptive_search = float(sys.argv[2]) if len(sys.argv)>1 else 1.2
     max_search_procedure = int(sys.argv[3]) if len(sys.argv)>1 else nodes * 2.5
     solution=None
     searches = []

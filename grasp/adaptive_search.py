@@ -52,13 +52,13 @@ class AdaptiveSearch():
         neighbor_searches = [] #O(1)
 
         #O(n * n^2) = #O(n^3) donde n son la cantidad de nodos
-        while isBest and limit > 0:
+        while isBest:
             neighbor_cycle, neighbor_cost = self.neighbor_search_swapping(best_solution, best_cost, matrix, neighbor_searches) #O(n^2)
             
             if neighbor_cost < best_cost:
                 better_choice = (best_cost-neighbor_cost)/best_cost*100 #O(1)
-                mejora_minima_apreciable = best_cost * 0.01 #O(1)
-                if better_choice < mejora_minima_apreciable: #O(1)
+                #mejora_minima_apreciable = best_cost * limit #O(1)
+                if better_choice < limit: #O(1)
                     isBest = False #O(1)
                 
                 best_solution = neighbor_cycle #O(1)
