@@ -49,8 +49,8 @@ if __name__ == "__main__":
     random_greedy = RandomGreedy(matrix)
     adaptive_search = AdaptiveSearch()
 
-    limit_adaptive_search = float(sys.argv[2]) if len(sys.argv)>1 else 1.0
-    max_search_procedure = int(sys.argv[3]) if len(sys.argv)>1 else 100
+    limit_adaptive_search = float(sys.argv[2]) if len(sys.argv)>1 else nodes * 1.2
+    max_search_procedure = int(sys.argv[3]) if len(sys.argv)>1 else nodes * 2.5
     solution=None
     searches = []
     local_searches = []
@@ -59,6 +59,6 @@ if __name__ == "__main__":
 
     start_vertex = grasp_result[0][0]
     graphic = Graphic(len(matrix))
-    graphic.do_grasp_graphic(searches, start_vertex, save=True, path_to_save=f'output/graphics/grasp_start_{start_vertex}_rows_{num_rows}_as_{limit_adaptive_search}_max-iterations{max_search_procedure}')
-    graphic.do_bl_graphic(local_searches, save=True, path_to_save=f'output/graphics/bl_{num_rows}_as_{limit_adaptive_search}_max-iterations{max_search_procedure}')
+    graphic.do_grasp_graphic(searches, start_vertex, save=True, path_to_save=f'output/graphics/grasp_start_{start_vertex}_rows_{num_rows}_as_{limit_adaptive_search}_max-iterations_{max_search_procedure}')
+    graphic.do_bl_graphic(local_searches, save=True, path_to_save=f'output/graphics/bl_{num_rows}_as_{limit_adaptive_search}_max-iterations_{max_search_procedure}')
     
