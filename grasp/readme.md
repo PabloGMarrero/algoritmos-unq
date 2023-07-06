@@ -59,5 +59,5 @@ Los distintos gráficos seran guardados en el directorio ```output/graphics/``` 
 - BL: ```bl_{CANT_NODES}_as_{LIMIT_BL}_max-iterations_{MAX_ITERATIONS}-06-07-2023_10-32-38```
 
 Donde
-````{DATETIME}``` tiene formato ```dd-MM-yyyy_HH-MM-SS```
+```{DATETIME}``` tiene formato ```dd-MM-yyyy_HH-MM-SS```
 ```{START_VERTEX}``` es el vertice por donde comenzó el greedy random
