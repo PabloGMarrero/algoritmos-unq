@@ -37,7 +37,7 @@ class AdaptiveSearch():
                 best_cost = swap_cost
                 #isBetter = True
         
-            neighbor_searches.append(swap_cost)
+                neighbor_searches.append(swap_cost)
 
             i= i+1
 
@@ -48,7 +48,6 @@ class AdaptiveSearch():
         best_solution = greedy_solution #O(1)
         best_cost = better_distance #O(1)
         isBest = True #O(1)
-        iterations = 0 #O(1)
         neighbor_searches = [] #O(1)
 
         #O(n * n^2) = #O(n^3) donde n son la cantidad de nodos
@@ -65,9 +64,7 @@ class AdaptiveSearch():
                 best_cost = neighbor_cost #O(1)
             
             if neighbor_cost == best_cost: #O(1)
-                iterations = iterations + 1 #O(1)
-                if iterations > 10: #O(1)
-                    isBest = False #O(1)
+                isBest = False #O(1)
 
             local_searches.append(neighbor_searches) #O(1)
 
