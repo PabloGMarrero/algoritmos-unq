@@ -1,0 +1,33 @@
+def lobo_oveja_repollo(elements, partial):
+    if elements == vacio:
+        return true, partial
+
+    for element in elements:
+        result = []
+
+        if (puedo_sacar(element, elements) && puedo_poner(element, partial)):
+            result = lobo_oveja_repollo(elements.remove(element), partial.add(element))
+
+            if !result[0]:
+                elements.add(element), partial.remove(element)
+    
+    return (false, [])
+
+
+pudo = false
+
+def lobo_oveja_repollo(elements, partial, cruzo):
+    if elements == vacio:
+        return true, partial
+
+    if (!es_tablero_valido(elements, partial, cruzo)):
+        return false
+
+    if cruzo:
+        for element in elements:
+            pudo = pudo || lobo_oveja_repollo(elements.remove(element), partial.add(element), not cruzo)
+    else:
+        for element in elements:
+            pudo = pudo || lobo_oveja_repollo(elements.add(element), partial.remove(element), not cruzo)
+
+    return pudo
