@@ -55,7 +55,7 @@ class Graphic():
         plt.figure(2)
         plt.title(f"Resultados BL para {self.nodes} nodos")
         plt.xlabel("# iteraciones")
-        plt.ylabel("test")
+        plt.ylabel("costo")
 
         """min_value = sys.maxsize
         bl_searches = []
